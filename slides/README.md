@@ -107,7 +107,7 @@ end
 
 ----
 
-### Do something only if after another file exists
+### Do something only if another file exists
 
 ----
 
@@ -120,9 +120,10 @@ end
       variables :something => node["my_dep"]["something"]
     end
   </code>
-
-  <code>
-    include_recipe "recipe1"
+</pre>
+<pre>
+  <code class="ruby">
+    #recipe2
     if File.exists("/opt/my_dependency")
       execute do
         command "some-command /opt/my_dependency"
@@ -133,13 +134,20 @@ end
 
 ----
 
-## But
+### Works
+## Cowboys #FTW
+
+----
+
+After few days
+## Spawn a new client
 ### Doesn't work
 
 ----
 
-### Run it again
-## Works !!
+## Run it again
+### Works !!
+Cowboy Quote here !
 
 ----
 
@@ -150,11 +158,16 @@ end
 
 <pre>
   <code class="ruby">
+    #recipe1
     template_file "/opt/my_dependency" do
       source "my_dependency.erb"
       variables :something => node["my_dep"]["something"]
     end
-
+  </code>
+</pre>
+<pre>
+  <code class="ruby">
+    #recipe2
     execute do
       command "some-command /opt/my_dependency"
       only_if File.exists("/opt/my_dependency")
