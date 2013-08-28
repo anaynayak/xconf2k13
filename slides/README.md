@@ -3,7 +3,7 @@
 ---
 
 
-## #1 Traceability is overrated 
+## #1 Traceability is overrated
 
 ----
 
@@ -11,7 +11,7 @@ Lets install nginx
 <pre>
 <code class="ruby">
 package "nginx" do
-	action :install 
+  action :install
 end
 </code>
 </pre>
@@ -19,7 +19,7 @@ end
 ----
 
 <pre>
-<code>
+<code class="bash">
 knife ssh "roles:app" interactive -a name
 </code>
 </pre>
@@ -42,8 +42,8 @@ Enforce package version
 <pre>
 <code class="ruby">
 package "nginx" do
-	version node['nginx']['version']
-	action :install 
+  version node['nginx']['version']
+  action :install
 end
 </code>
 </pre>
@@ -96,6 +96,68 @@ end
 
 ----
 
-* How do you test things locally? 
+* How do you test things locally?
 * How does the unavailability of any third-party services affect a chef-client run on your servers?
 * In case of script failures, do they continue from where it left off ? Or do you need to restore state manually?
+
+---
+
+## #3 Use Ruby.
+## DSL is for the Uncool !
+
+----
+
+### Do something only if after another file exists
+
+----
+
+### Ruby allows me to do that !
+<pre>
+  <code class="ruby">
+    #recipe1
+    template_file "/opt/my_dependency" do
+      source "my_dependency.erb"
+      variables :something => node["my_dep"]["something"]
+    end
+  </code>
+
+  <code>
+    include_recipe "recipe1"
+    if File.exists("/opt/my_dependency")
+      execute do
+        command "some-command /opt/my_dependency"
+      end
+    end
+  </code>
+</pre>
+
+----
+
+## But
+### Doesn't work
+
+----
+
+### Run it again
+## Works !!
+
+----
+
+## Convergence Time
+## Run Time
+
+----
+
+<pre>
+  <code class="ruby">
+    template_file "/opt/my_dependency" do
+      source "my_dependency.erb"
+      variables :something => node["my_dep"]["something"]
+    end
+
+    execute do
+      command "some-command /opt/my_dependency"
+      only_if File.exists("/opt/my_dependency")
+    end
+  </code>
+</pre>
