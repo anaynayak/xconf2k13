@@ -161,3 +161,71 @@ end
     end
   </code>
 </pre>
+
+---
+
+## Freedom from Constraints
+
+----
+
+roles/mongodb.rb
+<pre>
+  <code>
+    name "mongodb"
+    description "Mongodb role"
+    run_list %w(recipe[ntp] recipe[mongodb])
+  </code>
+</pre>
+
+----
+
+## Lets add some logforwarder fu
+
+<pre>
+  <code>
+    name "mongodb"
+    description "Mongodb role"
+    run_list %w(recipe[ntp] recipe[mongodb] recipe[logstash::logforwarder])
+  </code>
+</pre>
+
+----
+
+## Yea.. we have these things called environments
+
+----
+
+Only add it to certain environments
+<pre>
+  <code>
+    name "mongodb"
+    description "Mongodb role"
+    runlist_without_logforwarder = %w(recipe[ntp] recipe[mongodb] recipe[logstash::logforwarder])
+    env_run_list "production" => runlist_without_logforwarder,
+             "staging" => runlist_without_logforwarder + ["recipe[logstash::logforwarder]"],
+             "qa" => runlist_without_logforwarder +["recipe[logstash::logforwarder]"]
+             "_default" => runlist_without_logforwarder
+  </code>
+</pre>
+
+----
+
+
+## Why you no promote to production?
+
+----
+
+* Create role specific cookbooks
+<pre>
+  <code>
+    #cookbooks/db/recipes/default.rb
+    include_recipe "ntp"
+    include_recipe "mongodb"
+    include_recipe "logforwarder"
+  </code>
+</pre>
+
+* Version them
+* Manage chef version promotion through a single place.
+
+---
