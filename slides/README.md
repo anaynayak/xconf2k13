@@ -242,3 +242,31 @@ Only add it to certain environments
 * Manage chef version promotion through a single place.
 
 ---
+
+# The #nodocumentation movement
+<p class="fragment fade-in">a.k.a. job security</p>
+
+----
+
+### Think about the answers to the following:
+<p class="fragment fade-in">How do I configure all my AWS instances to have a specific version of ruby even before the first chef-client run?</p>
+
+<p class="fragment fade-in">How do I allow access from a new IP address
+in my Security groups?</p>
+
+<p class="fragment fade-in">Is there a particular sequence in which
+instances in an environment need to be configured so that they all work
+correctly?</p>
+
+----
+
+#### Document everything that cannot be interpreted from the code:
+
+* Custom AMI
+* Manual setup required to use an integration endpoint
+* Known bugs a.k.a. 'Just restart the service' or 'Just retrigger it'
+* Environment(s) and corresponding integration endpoints
+* Monitoring, logging and other systems
+* Machine setup
+
+---
