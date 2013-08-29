@@ -272,6 +272,7 @@ correctly?</p>
 ---
 
 # Refactoring
+### That was cool in the 90s
 
 ----
 
@@ -294,7 +295,11 @@ correctly?</p>
 
 ----
 
-## Who says cowboys don't refactor !
+## What if all these confs were supposed to be updated by different recipes
+
+----
+
+## Sad cowboy photo here
 
 ----
 
@@ -330,7 +335,6 @@ correctly?</p>
 </pre>
 <pre>
   <code class="ruby">
-
     template_file "/etc/my_app/conf.d/twitter" do
       source "twitter.conf.erb"
       variables :twitter_oauth_key => node['twitter']['key'],
@@ -341,8 +345,7 @@ correctly?</p>
 
 ----
 
-### Wow !! Modular Conf
-### Cowboys #FTW
+### Modular Confs #FTW
 
 ----
 
@@ -356,7 +359,11 @@ correctly?</p>
 
 ----
 
-### Its there in the conf file !
+### Sometimes you need to restart the app
+## For "Some" Reason
+ \- Cowboy
+
+knife ssh "blah" -x cowboy -i cowkey "service app restart"
 
 ----
 
@@ -377,4 +384,50 @@ correctly?</p>
 ### No Notification to
 # Restart !
 
----
+<pre>
+  <code class="ruby">
+    template_file "/etc/my_app/conf.d/third_party_service" do
+      source "third_party_service.conf.erb"
+      variables :third_party_service_username => node['third_party_service']['username'],
+        :third_party_service_password => node['third_party_service']['password']
+      notifies :restart, "service[my_app]"
+    end
+  </code>
+</pre>
+
+----
+
+#### Lets add some more confs in 3rd party conf
+
+<pre>
+  <code class="ruby">
+    template_file "/etc/my_app/conf.d/third_party_service" do
+      source "third_party_service.conf.erb"
+      variables :username => node['third_party_service']['username'],
+        :password => node['third_party_service']['password'],
+        :account_name => node['third_party_service']['account_name'],
+        :directory => node['third_party_service']['directory'],
+        :auth_type => node['third_party_service']['auth_type'],
+        :more_settings => node['third_party_service']['more_settings'],
+        :moar_settings => node['third_party_service']['moar_settings']
+        ...
+    end
+  </code>
+</pre>
+
+----
+
+### Stop doing this !
+
+----
+
+<pre>
+  <code class="ruby">
+    template_file "/etc/my_app/conf.d/third_party_service" do
+      source "third_party_service.conf.erb"
+      variables :settings=> node['third_party_service']
+    end
+  </code>
+</pre>
+
+If you have to pull from multiple node attributes, create value objects, Don't be shy !
