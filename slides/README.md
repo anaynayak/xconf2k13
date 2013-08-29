@@ -457,6 +457,8 @@ If you have to pull from multiple node attributes, create value objects, Don't b
 ### Create wrapper cookbooks
 chef-rewind might help: https://github.com/bryanwb/chef-rewind
 
+---
+
 ## #6 Ignorance is bliss
 
 ----
