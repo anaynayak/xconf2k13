@@ -431,3 +431,29 @@ knife ssh "blah" -x cowboy -i cowkey "service app restart"
 </pre>
 
 If you have to pull from multiple node attributes, create value objects, Don't be shy !
+
+---
+
+## Free Stuff
+### Community Cookbooks
+
+----
+
+### Download 'em
+### Change 'em
+### Use 'em
+
+----
+
+### Security Update to the cookbook
+
+----
+
+### Merge Conflicts
+### What should be the version number !
+
+----
+
+### Create wrapper cookbooks
+chef-rewind might help: https://github.com/bryanwb/chef-rewind
+
