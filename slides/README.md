@@ -177,7 +177,7 @@ Cowboy Quote here !
 
 ---
 
-## Freedom from Constraints
+## #4 Freedom from Constraints
 
 ----
 
@@ -243,7 +243,7 @@ Only add it to certain environments
 
 ---
 
-# The #nodocumentation movement
+## #5 The #nodocumentation movement
 <p class="fragment fade-in">a.k.a. job security</p>
 
 ----
@@ -271,7 +271,7 @@ correctly?</p>
 
 ---
 
-# Refactoring
+## #6 Refactoring
 
 ----
 
@@ -378,3 +378,52 @@ correctly?</p>
 # Restart !
 
 ---
+
+## #6 Ignorance is bliss
+
+----
+
+Lets install django
+
+<pre>
+  <code>
+    
+    execute "install django" do
+      command "pip install django==1.0.4"
+    end
+	
+    ...
+  </code>
+</pre>
+
+----
+
+Why is my chef-client run so slow?
+
+----
+
+<pre>
+  <code>
+    
+    execute "install django" do
+      command "pip install django==1.0.4"
+      not_if "pip freeze | grep django==1.0.4"
+    end
+    ...
+  </code>
+</pre>
+
+----
+
+Download a remote file (but not always!)
+
+<pre>
+  <code>
+    remote_file "#{Chef::Config[:file_cache_path]}/large-file.tar.gz" do
+
+      source "http://www.example.org/large-file.tar.gz"
+      <span class="fragment fade-in">checksum "3a7dac00b1" #RTFM</span>
+    end
+    ...
+  </code>
+</pre>
