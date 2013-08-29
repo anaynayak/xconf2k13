@@ -270,3 +270,111 @@ correctly?</p>
 * Machine setup
 
 ---
+
+# Refactoring
+
+----
+
+<pre>
+  <code class="ruby">
+    template_file "/etc/my_app/conf" do
+      source "app_conf.erb"
+      variables  some_conf => node['my_app']['some_conf'],
+        :db_ip => node['db']['ip'],
+        :db_password => node['db']['password'],
+        :third_party_service_username => node['third_party_service']['username'],
+        :third_party_service_password => node['third_party_service']['password'],
+        :twitter_oauth_key => node['twitter']['key'],
+        :twitter_oauth_secret => node['twitter']['secret']
+
+      notifies :restart, 'service[my_app]'
+    end
+  </code>
+</pre>
+
+----
+
+## Who says cowboys don't refactor !
+
+----
+
+<pre>
+  <code class="ruby">
+    template_file "/etc/my_app/conf" do
+      source "app_conf.erb"       #Has a line to include other confs now
+      variables  some_conf => node['my_app']['some_conf']
+      notifies :restart, 'service[my_app]'
+    end
+  </code>
+</pre>
+<pre>
+  <code class="ruby">
+    template_file "/etc/my_app/conf.d/db" do
+      source "db.conf.erb"
+      variables :db_ip => node['db']['ip'],
+        :db_password => node['db']['password']
+    end
+  </code>
+</pre>
+
+----
+
+<pre>
+  <code class="ruby">
+    template_file "/etc/my_app/conf.d/third_party_service" do
+      source "third_party_service.conf.erb"
+      variables :third_party_service_username => node['third_party_service']['username'],
+        :third_party_service_password => node['third_party_service']['password']
+    end
+  </code>
+</pre>
+<pre>
+  <code class="ruby">
+
+    template_file "/etc/my_app/conf.d/twitter" do
+      source "twitter.conf.erb"
+      variables :twitter_oauth_key => node['twitter']['key'],
+        :twitter_oauth_secret => node['twitter']['secret']
+    end
+  </code>
+</pre>
+
+----
+
+### Wow !! Modular Conf
+### Cowboys #FTW
+
+----
+
+# But
+## 1 Month later
+
+----
+
+#### Somebody tries to change the 3rd party conf
+## App doesn't know about it !
+
+----
+
+### Its there in the conf file !
+
+----
+
+## Look closely
+
+<pre>
+  <code class="ruby">
+    template_file "/etc/my_app/conf.d/third_party_service" do
+      source "third_party_service.conf.erb"
+      variables :third_party_service_username => node['third_party_service']['username'],
+        :third_party_service_password => node['third_party_service']['password']
+    end
+  </code>
+</pre>
+
+----
+
+### No Notification to
+# Restart !
+
+---
