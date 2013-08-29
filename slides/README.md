@@ -177,7 +177,7 @@ Cowboy Quote here !
 
 ---
 
-## Freedom from Constraints
+## #4 Freedom from Constraints
 
 ----
 
@@ -243,7 +243,7 @@ Only add it to certain environments
 
 ---
 
-# The #nodocumentation movement
+## #5 The #nodocumentation movement
 <p class="fragment fade-in">a.k.a. job security</p>
 
 ----
@@ -271,7 +271,7 @@ correctly?</p>
 
 ---
 
-# Refactoring
+## #6 Refactoring
 ### That was cool in the 90s
 
 ----
@@ -457,3 +457,81 @@ If you have to pull from multiple node attributes, create value objects, Don't b
 ### Create wrapper cookbooks
 chef-rewind might help: https://github.com/bryanwb/chef-rewind
 
+## #6 Ignorance is bliss
+
+----
+
+Lets install django
+
+<pre>
+  <code>
+    
+    execute "install django" do
+      command "pip install django==1.0.4"
+    end
+	
+    ...
+  </code>
+</pre>
+
+----
+
+Why is my chef-client run so slow?
+
+----
+
+<pre>
+  <code>
+    
+    execute "install django" do
+      command "pip install django==1.0.4"
+      not_if "pip freeze | grep django==1.0.4"
+    end
+    ...
+  </code>
+</pre>
+
+----
+
+Download a remote file (but not always!)
+
+<pre>
+  <code>
+    remote_file "#{Chef::Config[:file_cache_path]}/large-file.tar.gz" do
+
+      source "http://www.example.org/large-file.tar.gz"
+      <span class="fragment fade-in">checksum "3a7dac00b1" #RTFM</span>
+    end
+    ...
+  </code>
+</pre>
+
+---
+
+## #7 The Golden Touch
+
+----
+
+Q: How do you manage your cookbook deployments?
+
+A: Um.. We actually… cough…
+
+um... Can you repeat the question?
+
+----
+
+It's simple!
+
+One single git repository, bunch of community cookbooks, customize as appropriate. Voila! 
+
+<p class="fragment fade-in">#fail</p>
+
+----
+
+Start early!
+
+* Create repository per cookbook.
+* Use librarian/berkshelf to manage dependencies
+* Promote constraints via CI
+
+---
