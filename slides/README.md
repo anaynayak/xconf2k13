@@ -427,3 +427,33 @@ Download a remote file (but not always!)
     ...
   </code>
 </pre>
+
+---
+
+## #7 The Golden Touch
+
+----
+
+Q: How do you manage your cookbook deployments?
+
+A: Um.. We actually… cough…
+
+um... Can you repeat the question?
+
+----
+
+It's simple!
+
+One single git repository, bunch of community cookbooks, customize as appropriate. Voila! 
+
+<p class="fragment fade-in">#fail</p>
+
+----
+
+Start early!
+
+* Create repository per cookbook.
+* Use librarian/berkshelf to manage dependencies
+* Promote constraints via CI
+
+---
