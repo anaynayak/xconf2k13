@@ -550,7 +550,7 @@ Start early!
 
 ---
 
-## Thou shalt not question the Code with tests.
+## Thou shalt not question the Code with tests!
 
 ----
 
@@ -622,3 +622,66 @@ knife hosts
 * foodcritic
 * knife-spork
 * berkshelf, librarian
+
+
+---
+
+## This codebase is powered by Ctrl + V
+
+----
+
+<pre>
+  <code>
+    #cookbooks/mongo/recipes/default.rb
+    template "/etc/yum.repos.d/mongo.repo" do
+      action :create
+      source "mongo.repo.erb"
+      variables(
+        {
+        ...
+        }
+      )
+    end
+    execute "yum -q makecache"
+    ...
+  </code>
+</pre>
+
+----
+
+<pre>
+  <code>
+    #cookbooks/nginx/recipes/default.rb
+    template "/etc/yum.repos.d/nginx.repo" do
+      action :create
+      source "nginx.repo.erb"
+      variables(
+        {
+        ...
+        }
+      )
+    end
+    execute "yum -q makecache"
+    ...
+  </code>
+</pre>
+
+----
+
+Now how do I switch to an RPM mirror?
+
+----
+
+LWRP
+
+<pre>
+  <code>
+    yum_repository "zenoss" do
+      description "Zenoss Stable repo"
+      url "http://dev.zenoss.com/yum/stable/"
+      key "RPM-GPG-KEY-zenoss"
+      action :add
+    end
+  </code>
+</pre>
+
