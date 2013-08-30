@@ -537,3 +537,24 @@ Start early!
 * Promote constraints via CI
 
 ---
+
+## Thou shalt not question the Code with tests.
+
+----
+
+Where do you test your changes?
+<p class="fragment fade-in">Is it the QA environment?</p>
+
+----
+
+Contain your cowboy skillz in a vagrant box
+
+* [vagrant and friends](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins) 
+* [fauxhai](https://github.com/customink/fauxhai) Fake ohai 
+* [minitest-handler](https://github.com/calavera/minitest-chef-handler) Smoke test for your chef-client run
+* [chef handlers](http://docs.opscode.com/community_plugin_report_handler.html) Push metrics, errors to IRC, Graphite etc
+* [chef-zero](https://github.com/jkeiser/chef-zero) A mini chef server
+* [test-kitchen](https://github.com/opscode/test-kitchen) Integration testing
+* [chefspec](https://github.com/acrmp/chefspec) Unit tests
+
+---
