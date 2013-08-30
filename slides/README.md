@@ -309,10 +309,6 @@ correctly?</p>
 
 ----
 
-## Sad cowboy photo here
-
-----
-
 <pre>
   <code class="ruby">
     template_file "/etc/my_app/conf" do
@@ -443,23 +439,36 @@ If you have to pull from multiple node attributes, create value objects, Don't b
 
 ---
 
-## Free Stuff
-### Community Cookbooks
+## #7 Community Cookbooks
+<p class="fragment fade-in" data-fragment-index="0">a.k.a. Free Stuff</p>
 
 ----
 
-## 3 Step Process
+## It is Simple
 <h3 class="fragment fade-in" data-fragment-index="0">Download</h3>
-<h3 class="fragment fade-in" data-fragment-index="1">Edit</h3>
-<h3 class="fragment fade-in" data-fragment-index="2">Use</h3>
+<p class="fragment fade-in" data-fragment-index="0">git clone foo</h3>
+<h3 class="fragment fade-in" data-fragment-index="1">Use</h3>
+<p class="fragment fade-in" data-fragment-index="1">runlist "recipe[foo::bar]"</h3>
+
 
 ----
 
-### Security Update to the cookbook
+## But something is special in your app
+<p class="fragment fade-in" data-fragment-index="0">Afterall its a cowboy app !</p>
 
 ----
 
-## Problems
+## Just patch the cookbook.
+### Big deal. huh !
+"recipe[foo:bar] does a few new things now"
+
+----
+
+### Update available to the cookbook
+
+----
+
+## Updating is a problem !
 <h3 class="fragment fade-in" data-fragment-index="0"> Merge Conflicts</h3>
 <h3 class="fragment fade-in" data-fragment-index="1">What should be the version number !</h3>
 
@@ -470,7 +479,7 @@ chef-rewind might help: https://github.com/bryanwb/chef-rewind
 
 ---
 
-## #6 Ignorance is bliss
+## #8 Ignorance is bliss
 
 ----
 
@@ -533,7 +542,7 @@ Download a remote file (but not always!)
 
 ---
 
-## #7 The Golden Touch
+## #9 The Golden Touch
 
 ----
 
@@ -561,7 +570,7 @@ Start early!
 
 ---
 
-## Thou shalt not question the Code with tests!
+## #10 Thou shalt not question the Code with tests!
 
 ----
 
@@ -637,7 +646,7 @@ knife hosts
 
 ---
 
-## This codebase is powered by Ctrl + V
+## #11 This codebase is powered by Ctrl + V
 
 ----
 
