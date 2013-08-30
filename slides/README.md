@@ -147,7 +147,17 @@ After few days
 
 ## Run it again
 ### Works !!
-Cowboy Quote here !
+
+----
+
+<img src="http://content.mycutegraphics.com/graphics/clothing/cowboy-hat-brown.png" 
+    style="width: 100px; background: transparent; border: none;"/>
+# KEEP
+# Calm
+and
+# Retrigger
+\- Cowboy Mantra
+
 
 ----
 
@@ -213,7 +223,7 @@ Only add it to certain environments
   <code>
     name "mongodb"
     description "Mongodb role"
-    runlist_without_logforwarder = %w(recipe[ntp] recipe[mongodb] recipe[logstash::logforwarder])
+    runlist_without_logforwarder = %w(recipe[ntp] recipe[mongodb])
     env_run_list "production" => runlist_without_logforwarder,
              "staging" => runlist_without_logforwarder + ["recipe[logstash::logforwarder]"],
              "qa" => runlist_without_logforwarder +["recipe[logstash::logforwarder]"]
@@ -384,6 +394,8 @@ knife ssh "blah" -x cowboy -i cowkey "service app restart"
 ### No Notification to
 # Restart !
 
+----
+
 <pre>
   <code class="ruby">
     template_file "/etc/my_app/conf.d/third_party_service" do
@@ -439,9 +451,10 @@ If you have to pull from multiple node attributes, create value objects, Don't b
 
 ----
 
-### Download 'em
-### Change 'em
-### Use 'em
+## 3 Step Process
+<h3 class="fragment fade-in" data-fragment-index="0">Download</h3>
+<h3 class="fragment fade-in" data-fragment-index="1">Edit</h3>
+<h3 class="fragment fade-in" data-fragment-index="2">Use</h3>
 
 ----
 
@@ -449,8 +462,9 @@ If you have to pull from multiple node attributes, create value objects, Don't b
 
 ----
 
-### Merge Conflicts
-### What should be the version number !
+## Problems
+<h3 class="fragment fade-in" data-fragment-index="0"> Merge Conflicts</h3>
+<h3 class="fragment fade-in" data-fragment-index="1">What should be the version number !</h3>
 
 ----
 
