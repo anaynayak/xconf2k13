@@ -369,11 +369,8 @@ correctly?</p>
 
 ----
 
-### Sometimes you need to restart the app
-## For "Some" Reason
- \- Cowboy
-
 knife ssh "blah" -x cowboy -i cowkey "service app restart"
+<blockquote class="fragment fade-in" data-fragment-index="0">Sometimes you need to restart the app mannually for "some" Reason</blockquote>
 
 ----
 
