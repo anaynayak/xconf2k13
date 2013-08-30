@@ -495,14 +495,26 @@ Why is my chef-client run so slow?
 
 ----
 
+Download a remote file
+
+<pre>
+  <code>
+    remote_file "#{Chef::Config[:file_cache_path]}/large-file.tar.gz" do
+      source "http://www.example.org/large-file.tar.gz"
+    end
+    ...
+  </code>
+</pre>
+
+----
+
 Download a remote file (but not always!)
 
 <pre>
   <code>
     remote_file "#{Chef::Config[:file_cache_path]}/large-file.tar.gz" do
-
       source "http://www.example.org/large-file.tar.gz"
-      <span class="fragment fade-in">checksum "3a7dac00b1" #RTFM</span>
+      checksum "3a7dac00b1" #RTFM
     end
     ...
   </code>
@@ -549,7 +561,7 @@ Where do you test your changes?
 
 Contain your cowboy skillz in a vagrant box
 
-* [vagrant and friends](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins) 
+* [vagrant](http://www.vagrantup.com/) 
 * [fauxhai](https://github.com/customink/fauxhai) Fake ohai 
 * [minitest-handler](https://github.com/calavera/minitest-chef-handler) Smoke test for your chef-client run
 * [chef handlers](http://docs.opscode.com/community_plugin_report_handler.html) Push metrics, errors to IRC, Graphite etc
@@ -557,4 +569,56 @@ Contain your cowboy skillz in a vagrant box
 * [test-kitchen](https://github.com/opscode/test-kitchen) Integration testing
 * [chefspec](https://github.com/acrmp/chefspec) Unit tests
 
----
+----
+
+## Tools
+
+----
+
+<pre>
+  <code>
+    knife ssh "chef_environment:uat-preview" cssh  -x cowboy -i cowkey
+  </code>
+</pre>
+
+----
+
+<img src="http://csshx.googlecode.com/svn/images/csshX.png" height="600" width="800"></img>
+
+----
+
+knife hosts
+
+<pre>
+  <code>
+     csshx root@uat-app-{1,2,3,4}
+  </code>
+</pre>
+<pre>
+  <code>
+  knife ssh "chef_environment:uat*" interactive -a name
+  knife-ssh> echo "hello"
+    uat-app-1      hello
+    uat-app-2      hello
+    uat-app-3      hello
+    uat-app-4      hello
+  </code>
+</pre>
+
+
+----
+
+[Awesome Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins)
+
+* vagrant-butcher
+* vagrant-cachier
+* vagrant-omnibus
+* vagrant-berkshelf
+
+----
+
+### Others
+
+* foodcritic
+* knife-spork
+* berkshelf, librarian
