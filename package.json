@@ -1,0 +1,16 @@
+{
+    "name": "cowboy",
+    "description": "Cowboy Coder's Guide to Infrastructure Nightmares",
+    "keywords": [],
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/anaynayak/xconf2k13"
+    },
+    "bin": {
+        "reveal-md": "bin/server-cli.js"
+    },
+    "dependencies": {
+        "reveal-md": "git+https://github.com/akshaymankar/reveal-md.git#code-highlight"
+    }
+}
