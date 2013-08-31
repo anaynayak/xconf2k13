@@ -199,7 +199,7 @@ and
 
 roles/mongodb.rb
 <pre>
-  <code>
+  <code class="ruby">
     name "mongodb"
     description "Mongodb role"
     run_list %w(recipe[ntp] recipe[mongodb])
@@ -211,7 +211,7 @@ roles/mongodb.rb
 ## Lets add some logforwarder fu
 
 <pre>
-  <code>
+  <code class="ruby">
     name "mongodb"
     description "Mongodb role"
     run_list %w(recipe[ntp] recipe[mongodb] recipe[logstash::logforwarder])
@@ -226,7 +226,7 @@ roles/mongodb.rb
 
 Only add it to certain environments
 <pre>
-  <code>
+  <code class="ruby">
     name "mongodb"
     description "Mongodb role"
     runlist_without_logforwarder = %w(recipe[ntp] recipe[mongodb])
@@ -246,7 +246,7 @@ Only add it to certain environments
 
 * Create role specific cookbooks
 <pre>
-  <code>
+  <code class="ruby">
     #cookbooks/db/recipes/default.rb
     include_recipe "ntp"
     include_recipe "mongodb"
@@ -292,7 +292,7 @@ correctly?</p>
 ----
 
 <pre>
-  <code>
+  <code class="ruby">
     #cookbooks/mongo/recipes/default.rb
     template "/etc/yum.repos.d/mongo.repo" do
       action :create
@@ -311,7 +311,7 @@ correctly?</p>
 ----
 
 <pre>
-  <code>
+  <code class="ruby">
     #cookbooks/nginx/recipes/default.rb
     template "/etc/yum.repos.d/nginx.repo" do
       action :create
@@ -336,7 +336,7 @@ Now how do I switch to an RPM mirror?
 LWRP
 
 <pre>
-  <code>
+  <code class="ruby">
     yum_repository "zenoss" do
       description "Zenoss Stable repo"
       url "http://dev.zenoss.com/yum/stable/"
@@ -553,7 +553,7 @@ chef-rewind might help: https://github.com/bryanwb/chef-rewind
 Lets install django
 
 <pre>
-  <code>
+  <code class="ruby">
     
     execute "install django" do
       command "pip install django==1.0.4"
@@ -570,7 +570,7 @@ Why is my chef-client run so slow?
 ----
 
 <pre>
-  <code>
+  <code class="ruby">
     
     execute "install django" do
       command "pip install django==1.0.4"
@@ -585,7 +585,7 @@ Why is my chef-client run so slow?
 Download a remote file
 
 <pre>
-  <code>
+  <code class="ruby">
     remote_file "#{Chef::Config[:file_cache_path]}/large-file.tar.gz" do
       source "http://www.example.org/large-file.tar.gz"
     end
@@ -598,7 +598,7 @@ Download a remote file
 Download a remote file (but not always!)
 
 <pre>
-  <code>
+  <code class="ruby">
     remote_file "#{Chef::Config[:file_cache_path]}/large-file.tar.gz" do
       source "http://www.example.org/large-file.tar.gz"
       checksum "3a7dac00b1" #RTFM
@@ -663,7 +663,7 @@ Contain your cowboy skillz in a vagrant box
 ----
 
 <pre>
-  <code>
+  <code class="ruby">
     knife ssh "chef_environment:uat-preview" cssh  -x cowboy -i cowkey
   </code>
 </pre>
@@ -682,7 +682,7 @@ knife hosts
   </code>
 </pre>
 <pre>
-  <code>
+  <code class="ruby">
   knife ssh "chef_environment:uat*" interactive -a name
   knife-ssh> echo "hello"
     uat-app-1      hello
