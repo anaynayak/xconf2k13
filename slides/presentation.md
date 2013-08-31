@@ -713,3 +713,5 @@ knife hosts
 
 ---
 
+<img src="http://static.giantbomb.com/uploads/original/8/87790/2204743-characterrender_lonestar.png" />
+## Thanks
