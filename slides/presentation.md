@@ -357,7 +357,7 @@ LWRP
   <code class="ruby">
     template_file "/etc/my_app/conf" do
       source "app_conf.erb"
-      variables  some_conf => node['my_app']['some_conf'],
+      variables  :some_conf => node['my_app']['some_conf'],
         :db_ip => node['db']['ip'],
         :db_password => node['db']['password'],
         :third_party_service_username => node['third_party_service']['username'],
@@ -380,7 +380,7 @@ LWRP
   <code class="ruby">
     template_file "/etc/my_app/conf" do
       source "app_conf.erb"       #Has a line to include other confs now
-      variables  some_conf => node['my_app']['some_conf']
+      variables  :some_conf => node['my_app']['some_conf']
       notifies :restart, 'service[my_app]'
     end
   </code>
