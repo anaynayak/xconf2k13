@@ -2,8 +2,12 @@
 
 ---
 
+# #Sarcasm
 
-## #1 Traceability is overrated
+---
+
+
+## Traceability is overrated
 
 ----
 
@@ -84,25 +88,7 @@ end
 
 ---
 
-## #2 Make it difficult to test in isolation
-
-----
-
-### Make ample use of the following
-
-* Chef search
-* Make calls over the network to multiple third-party services. e.g. AWS
-* Scripts should not be repeatable. In case of failure, ensure that it takes sufficient knowledge of code to recover.
-
-----
-
-* How do you test things locally?
-* How does the unavailability of any third-party services affect a chef-client run on your servers?
-* In case of script failures, do they continue from where it left off ? Or do you need to restore state manually?
-
----
-
-## #3 Use Ruby.
+## Use Ruby.
 ## DSL is for the Uncool !
 
 ----
@@ -161,8 +147,8 @@ and
 
 ----
 
+## Compile Time
 ## Convergence Time
-## Run Time
 
 ----
 
@@ -187,7 +173,27 @@ and
 
 ---
 
-## #4 Freedom from Constraints
+
+
+## Make it difficult to test in isolation
+
+----
+
+### Make ample use of the following
+
+* Chef search
+* Make calls over the network to multiple third-party services. e.g. AWS
+* Scripts should not be repeatable. In case of failure, ensure that it takes sufficient knowledge of code to recover.
+
+----
+
+* How do you test things locally?
+* How does the unavailability of any third-party services affect a chef-client run on your servers?
+* In case of script failures, do they continue from where it left off ? Or do you need to restore state manually?
+
+---
+
+## Freedom from Constraints
 
 ----
 
@@ -253,7 +259,7 @@ Only add it to certain environments
 
 ---
 
-## #5 The #nodocumentation movement
+## The #nodocumentation movement
 <p class="fragment fade-in">a.k.a. job security</p>
 
 ----
@@ -281,7 +287,68 @@ correctly?</p>
 
 ---
 
-## #6 Refactoring
+## This codebase is powered by Ctrl + V
+
+----
+
+<pre>
+  <code>
+    #cookbooks/mongo/recipes/default.rb
+    template "/etc/yum.repos.d/mongo.repo" do
+      action :create
+      source "mongo.repo.erb"
+      variables(
+        {
+        ...
+        }
+      )
+    end
+    execute "yum -q makecache"
+    ...
+  </code>
+</pre>
+
+----
+
+<pre>
+  <code>
+    #cookbooks/nginx/recipes/default.rb
+    template "/etc/yum.repos.d/nginx.repo" do
+      action :create
+      source "nginx.repo.erb"
+      variables(
+        {
+        ...
+        }
+      )
+    end
+    execute "yum -q makecache"
+    ...
+  </code>
+</pre>
+
+----
+
+Now how do I switch to an RPM mirror?
+
+----
+
+LWRP
+
+<pre>
+  <code>
+    yum_repository "zenoss" do
+      description "Zenoss Stable repo"
+      url "http://dev.zenoss.com/yum/stable/"
+      key "RPM-GPG-KEY-zenoss"
+      action :add
+    end
+  </code>
+</pre>
+
+---
+
+## Refactoring
 ### That was cool in the 90s
 
 ----
@@ -366,7 +433,7 @@ correctly?</p>
 ----
 
 knife ssh "blah" -x cowboy -i cowkey "service app restart"
-<blockquote class="fragment fade-in" data-fragment-index="0">Sometimes you need to restart the app mannually for "some" Reason</blockquote>
+<blockquote class="fragment fade-in" data-fragment-index="0">Sometimes you need to restart the app for "some" Reason... manually</blockquote>
 
 ----
 
@@ -439,7 +506,7 @@ If you have to pull from multiple node attributes, create value objects, Don't b
 
 ---
 
-## #7 Community Cookbooks
+## Community Cookbooks
 <p class="fragment fade-in" data-fragment-index="0">a.k.a. Free Stuff</p>
 
 ----
@@ -479,7 +546,7 @@ chef-rewind might help: https://github.com/bryanwb/chef-rewind
 
 ---
 
-## #8 Ignorance is bliss
+## Ignorance is bliss
 
 ----
 
@@ -542,7 +609,7 @@ Download a remote file (but not always!)
 
 ---
 
-## #9 The Golden Touch
+## The Golden Touch
 
 ----
 
@@ -570,7 +637,7 @@ Start early!
 
 ---
 
-## #10 Thou shalt not question the Code with tests!
+## Thou shalt not question the Code with tests!
 
 ----
 
@@ -645,63 +712,4 @@ knife hosts
 
 
 ---
-
-## #11 This codebase is powered by Ctrl + V
-
-----
-
-<pre>
-  <code>
-    #cookbooks/mongo/recipes/default.rb
-    template "/etc/yum.repos.d/mongo.repo" do
-      action :create
-      source "mongo.repo.erb"
-      variables(
-        {
-        ...
-        }
-      )
-    end
-    execute "yum -q makecache"
-    ...
-  </code>
-</pre>
-
-----
-
-<pre>
-  <code>
-    #cookbooks/nginx/recipes/default.rb
-    template "/etc/yum.repos.d/nginx.repo" do
-      action :create
-      source "nginx.repo.erb"
-      variables(
-        {
-        ...
-        }
-      )
-    end
-    execute "yum -q makecache"
-    ...
-  </code>
-</pre>
-
-----
-
-Now how do I switch to an RPM mirror?
-
-----
-
-LWRP
-
-<pre>
-  <code>
-    yum_repository "zenoss" do
-      description "Zenoss Stable repo"
-      url "http://dev.zenoss.com/yum/stable/"
-      key "RPM-GPG-KEY-zenoss"
-      action :add
-    end
-  </code>
-</pre>
 
